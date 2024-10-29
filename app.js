@@ -33,18 +33,23 @@ todoList.appendChild(todoDiv);
 todoInput.value = "";
 }
 
-function deleteCheck(e){
+function deleteCheck(e) {
    const item = e.target;
    //DELETE TODO
-   if(item.classList[0] === 'trash-btn'){
+   if(item.classList[0] === "trash-btn"){
     const todo = item.parentElement;
+    //Animation
+    console.log("42",todo);
     todo.classList.add("fall");
-   
-   } 
+    todo.addEventListener("transitionend",function() { todo.remove();
+        console.log("45",todo);
+   });
 }
 
-//CEHCK MARK
-if(itme.classlist[0] ==="complete-btn") {
+
+//CHECK MARK
+if(item.classList[0] ==="complete-btn") {
     const todo = item.parentElement;
     todo.classList.toggle("completed");
+}
 }
