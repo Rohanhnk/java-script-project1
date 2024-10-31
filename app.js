@@ -58,12 +58,10 @@ if(item.classList[0] ==="complete-btn") {
 
 function filterTodo(e) {
     const todos = todoList.children;
-    console.log("61", todos)
     Array.from(todos).forEach(function(todo){
         switch(e.target.value){
             
 case "all":
-    console.log("66",todo.style)
     todo.style.display = "flex";
     break;
     case"completed":
@@ -76,9 +74,18 @@ case "all":
         if(!todo.classList.contains("completed")) {
             todo.style.display = "flex";
         } else {
-            todo.style.todoList = "none";
+            todo.style.display = "none";
         }
         break;
         }
     });
+}
+
+
+function saveLocalTodos(todo){
+    //CHECK
+    let todos;
+    if(localStorage.getItem("todos")==null){
+        todos = []
+    }
 }
