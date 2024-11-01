@@ -43,11 +43,10 @@ function deleteCheck(e) {
    //DELETE TODO
    if(item.classList[0] === "trash-btn"){
     const todo = item.parentElement;
+    removeLocalTodos(todo);
     //Animation
-    console.log("42",todo);
     todo.classList.add("fall");
     todo.addEventListener("transitionend",function() { todo.remove();
-        console.log("45",todo);
    });
 }
 
@@ -127,4 +126,33 @@ todoDiv.appendChild(trashButton);
 //APPEND TO LIST
 todoList.appendChild(todoDiv);
      })
+}
+
+function removeLocalTodos(todo){
+    //CHECK
+    let todos;
+    if(localStorage.getItem("todos")===null){
+        todos = [];
+    }else{
+        todos = JSON.parse(localStorage.getItem("todos"));
+    } 
+    todos.push({ text: todo, completed: false });
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function removeLocalTodos(todo) {
+    let todos;
+    if (localStorage.getItem("todos") === null) {
+        todos = [];
+    } else {
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+
+    const todoText = todo.children[0].innerText;
+   const todoIndex = todos.indexOf(todoText);
+
+   if (todoIndex > -1){
+    todos.splice(todoIndex, 1);
+}
+localStorage.setItem("todos", JSON.stringify(todos));
 }
